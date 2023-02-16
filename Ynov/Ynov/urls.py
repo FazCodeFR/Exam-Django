@@ -22,29 +22,26 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_swagger.views import get_swagger_view
 
 
-# import ArtisteApiRest
-# from myApp1.views import ArtisteApiRest
-
-
+# Generate API
 router = routers.SimpleRouter()
 router.register('realisateurs', RealisateurViewSet, basename='realisateurs')
 router.register('scenarios', ScenarioViewSet, basename='scenarios')
 router.register('films', FilmViewSet, basename='films')
 router.register('acteurs', ActeurViewSet, basename='acteurs')
 
-schema_view = get_swagger_view(title='API Documentation')
+# Documentation API Swagger
+schema_view = get_swagger_view(title='Documentation API Exam Django')
 
 
-# Meuble
 urlpatterns = [
-    # swagger
+    # Documentation API Swagger
     path('api-docs/', schema_view),
+
     # rest_framework
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
 
-    # jwt
+    # Token jwt
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    # path('api/artistes',ArtisteApiRest.as_view())
 ]

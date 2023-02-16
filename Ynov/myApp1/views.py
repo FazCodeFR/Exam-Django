@@ -22,10 +22,9 @@ class IsAdminOrReadOnly(IsAdminUser):
 
 
 class RealisateurViewSet(ModelViewSet):
-    serializer_class = RealisateurSerializer
-
-    # Seul l'admin peut ajouter/modifier/supprimer les données
+   # Seul l'admin peut ajouter/modifier/supprimer les données
     permission_classes = [IsAdminOrReadOnly]
+    serializer_class = RealisateurSerializer
 
     def get_queryset(self):
         queryset = Realisateur.objects.all()

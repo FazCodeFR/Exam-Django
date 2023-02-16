@@ -12,6 +12,9 @@
 - [Stack technologique](#stack-technologique)
 - [Assurance de la qualité du code](#assurance-de-la-qualité-du-code)
 - [Installation](#installation)
+- [Techniquement](#techniquement)
+- [Fonctionnalités](#fonctionnalités)
+- [SQL INSERT DATA](#sql-insert-data)
 - [Plugins conseillés](#plugins-conseillés)
 - [Support/Docs](#support)
 
@@ -67,8 +70,11 @@ source path/venv/Scripts/activate
 - Lancer le projet
 
 ```python
-py manage.py runserve
+py manage.py runserver
+Par default le serveur est http://127.0.0.1:8000/
 ```
+
+````
 
 ## Techniquement
 
@@ -82,6 +88,15 @@ Swagger n'affiche que les Get car à son lancement il n'y a pas de token
 ## Fonctionnalités
 
 - CRUD sur les films, les genres, les acteurs, les réalisateurs, les scenarios, les clients et les emprunts
+
+
+## Admin
+
+- username : dev
+- password : dev
+
+Pour généré un token :
+
 
 ## SQL INSERT DATA
 
@@ -134,7 +149,7 @@ VALUES
   ('A detective investigates a series of murders that all seem connected to a mysterious book', 7, 'The Book of Murders'),
   ('A group of thieves attempt to pull off the biggest heist in history', 8, 'The Big Score');
 
-```
+````
 
 ## Plugins conseillés
 
