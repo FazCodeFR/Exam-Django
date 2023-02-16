@@ -16,7 +16,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from myApp1.views import DirigeantViewSet, MagasinViewSet, MeubleViewSet
+from myApp1.views import RealisateurViewSet, ScenarioViewSet, FilmViewSet, ActeurViewSet
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework_swagger.views import get_swagger_view
@@ -27,21 +27,18 @@ from rest_framework_swagger.views import get_swagger_view
 
 
 router = routers.SimpleRouter()
-router.register('dirigeants', DirigeantViewSet, basename='dirigeants')
-router.register('magasins', MagasinViewSet, basename='magasins')
-router.register('meubles', MeubleViewSet, basename='meubles')
+router.register('realisateurs', RealisateurViewSet, basename='realisateurs')
+router.register('scenarios', ScenarioViewSet, basename='scenarios')
+router.register('films', FilmViewSet, basename='films')
+router.register('acteurs', ActeurViewSet, basename='acteurs')
 
 schema_view = get_swagger_view(title='API Documentation')
 
 
-# Dirigeant, Magasin, Meuble
+# Meuble
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-
     # swagger
     path('api-docs/', schema_view),
-
-
     # rest_framework
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),

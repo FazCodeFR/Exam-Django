@@ -3,23 +3,43 @@ from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 
 
-class MeubleSerializer(ModelSerializer):
+class RealisateurSerializer(ModelSerializer):
     class Meta:
-        model = Meuble
+        model = Realisateur
         fields = '__all__'
         # depth = 1
 
 
-class MagasinSerializer(ModelSerializer):
-    meubles = MeubleSerializer(many=True)
-
+class ScenarioSerializer(ModelSerializer):
     class Meta:
-        model = Magasin
+        model = Scenario
         fields = '__all__'
+        # depth = 1
 
 
-class DirigeantSerializer(ModelSerializer):
-
+class FilmSerializer(ModelSerializer):
     class Meta:
-        model = Dirigeant
+        model = Film
         fields = '__all__'
+        # depth = 1
+
+
+class ActeurSerializer(ModelSerializer):
+    class Meta:
+        model = Acteur
+        fields = '__all__'
+        # depth = 1
+
+
+class ClientSerializer(ModelSerializer):
+    class Meta:
+        model = Client
+        fields = '__all__'
+        # depth = 1
+
+
+class EmprunterSerializer(ModelSerializer):
+    class Meta:
+        model = Emprunter
+        fields = '__all__'
+        # depth = 1
