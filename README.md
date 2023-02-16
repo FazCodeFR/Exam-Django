@@ -6,6 +6,9 @@
 [![Git](https://img.shields.io/badge/Git-F05032.svg?style=for-the-badge&logo=Git&logoColor=white)](https://git-scm.com/)
 [![GitHub](https://img.shields.io/badge/GitHub-181717.svg?style=for-the-badge&logo=GitHub&logoColor=white)](https://git-scm.com/)
 
+LINK :
+https://github.com/FazCodeFR/Exam-Django
+
 ## Table des matières
 
 - [Présentation](#présentation)
@@ -89,6 +92,10 @@ Swagger n'affiche que les Get car à son lancement il n'y a pas de token
 
 - CRUD sur les films, les genres, les acteurs, les réalisateurs, les scenarios, les clients et les emprunts
 
+- Rajout de colonne bonus dans les tables
+
+
+
 
 ## Admin
 
@@ -150,6 +157,14 @@ VALUES
   ('A group of thieves attempt to pull off the biggest heist in history', 8, 'The Big Score');
 
 ````
+
+## Probleme rencontré
+
+"Une documentation de l’API détaillé" => Je n'ai pas pu implementer cette fonctionnalité car le package swagger que j'ai utilisé est obsolète ne permet pas de tout faire (j'ai passé du temps a essayer de le faire fonctionné)
+
+## Diagramme de classe
+
+![Diagramme de classe](./dia.png)
 
 ## Plugins conseillés
 

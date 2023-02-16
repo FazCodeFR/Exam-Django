@@ -18,6 +18,9 @@ class ScenarioSerializer(ModelSerializer):
 
 
 class FilmSerializer(ModelSerializer):
+    realisateur = RealisateurSerializer(read_only=True)
+    scenario = ScenarioSerializer(read_only=True)
+
     class Meta:
         model = Film
         fields = '__all__'
@@ -41,6 +44,8 @@ class ClientSerializer(ModelSerializer):
 
 
 class EmprunterSerializer(ModelSerializer):
+    client = ClientSerializer(read_only=True)
+
     class Meta:
         model = Emprunter
         fields = '__all__'

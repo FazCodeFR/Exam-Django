@@ -104,6 +104,16 @@ class ActeurViewSet(ModelViewSet):
     # Seul l'admin peut ajouter/modifier/supprimer les données
     permission_classes = [IsAdminOrReadOnly]
 
+    def par_realisateur(self, request, pk=None):
+        try:
+            realisateur = Realisateur.objects.get(pk=pk)
+            acteurs = Acteur.objects.filter(
+                Q(films__realisateur=realisateur)).distinct()
+            serializer = ActeurSerializer(acteurs, many=True)
+            return Response(serializer.data)
+        except Realisateur.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
     def get_queryset(self):
         queryset = Acteur.objects.all()
 
