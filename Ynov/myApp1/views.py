@@ -101,10 +101,19 @@ class ActeurViewSet(ModelViewSet):
             queryset = queryset.filter(age=age)
         if pays is not None:
             queryset = queryset.filter(pays=pays)
+
+
+        #  Récupérer la liste des acteurs ayant joué dans au moins un film avec un réalisateur donné (par l’ID)
+        realisateur = self.request.GET.get('realisateur')
+        if realisateur is not None:
+            queryset = queryset.filter(film__realisateur=realisateur)
+        
+
         # if film is not None:
         #     queryset = queryset.filter(film=film)
 
         return queryset
+
 
 
 class ClientViewSet(ModelViewSet):

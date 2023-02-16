@@ -14,7 +14,7 @@ class Realisateur(models.Model):
 class Scenario(models.Model):
     titre = models.CharField(max_length=100)
     description = models.TextField(null=True)
-    dateCreation = models.DateTimeField(auto_now_add=True)
+    # dateCreation = models.DateTimeField(auto_now_add=True)
     estEnEcriture = models.BooleanField(default=False)
     # Relation OneToOne avec le film
     film = models.OneToOneField(
