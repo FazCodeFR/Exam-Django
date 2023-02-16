@@ -5,11 +5,27 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from myApp1.serializer import *
 from myApp1.models import Realisateur, Scenario, Film, Acteur, Client, Emprunter
+from rest_framework.permissions import BasePermission, IsAdminUser, SAFE_METHODS
+from rest_framework.authentication import TokenAuthentication, SessionAuthentication
+
+
+class IsAdminOrReadOnly(IsAdminUser):
+    """
+    Custom permission to only allow administrators to create, update, and delete objects.
+    """
+
+    def has_permission(self, request, view):
+        if request.method in SAFE_METHODS:
+            return True
+        permission_classes = [IsAuthenticated]
+        return request.user and request.user.is_staff
 
 
 class RealisateurViewSet(ModelViewSet):
     serializer_class = RealisateurSerializer
-    # permission_classes = [IsAuthenticated]
+
+    # Seul l'admin peut ajouter/modifier/supprimer les données
+    permission_classes = [IsAdminOrReadOnly]
 
     def get_queryset(self):
         queryset = Realisateur.objects.all()
@@ -32,7 +48,9 @@ class RealisateurViewSet(ModelViewSet):
 
 class ScenarioViewSet(ModelViewSet):
     serializer_class = ScenarioSerializer
-    # permission_classes = [IsAuthenticated]
+
+    # Seul l'admin peut ajouter/modifier/supprimer les données
+    permission_classes = [IsAdminOrReadOnly]
 
     def get_queryset(self):
         queryset = Scenario.objects.all()
@@ -50,7 +68,9 @@ class ScenarioViewSet(ModelViewSet):
 
 class FilmViewSet(ModelViewSet):
     serializer_class = FilmSerializer
-    # permission_classes = [IsAuthenticated]
+
+    # Seul l'admin peut ajouter/modifier/supprimer les données
+    permission_classes = [IsAdminOrReadOnly]
 
     def get_queryset(self):
         queryset = Film.objects.all()
@@ -81,7 +101,9 @@ class FilmViewSet(ModelViewSet):
 
 class ActeurViewSet(ModelViewSet):
     serializer_class = ActeurSerializer
-    # permission_classes = [IsAuthenticated]
+
+    # Seul l'admin peut ajouter/modifier/supprimer les données
+    permission_classes = [IsAdminOrReadOnly]
 
     def get_queryset(self):
         queryset = Acteur.objects.all()
@@ -102,12 +124,10 @@ class ActeurViewSet(ModelViewSet):
         if pays is not None:
             queryset = queryset.filter(pays=pays)
 
-
         #  Récupérer la liste des acteurs ayant joué dans au moins un film avec un réalisateur donné (par l’ID)
         realisateur = self.request.GET.get('realisateur')
         if realisateur is not None:
             queryset = queryset.filter(film__realisateur=realisateur)
-        
 
         # if film is not None:
         #     queryset = queryset.filter(film=film)
@@ -115,10 +135,11 @@ class ActeurViewSet(ModelViewSet):
         return queryset
 
 
-
 class ClientViewSet(ModelViewSet):
     serializer_class = ClientSerializer
-    # permission_classes = [IsAuthenticated]
+
+    # Seul l'admin peut ajouter/modifier/supprimer les données
+    permission_classes = [IsAdminOrReadOnly]
 
     def get_queryset(self):
         queryset = Client.objects.all()
@@ -143,7 +164,9 @@ class ClientViewSet(ModelViewSet):
 
 class EmprunterViewSet(ModelViewSet):
     serializer_class = EmprunterSerializer
-    # permission_classes = [IsAuthenticated]
+
+    # Seul l'admin peut ajouter/modifier/supprimer les données
+    permission_classes = [IsAdminOrReadOnly]
 
     def get_queryset(self):
         queryset = Emprunter.objects.all()

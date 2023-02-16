@@ -70,6 +70,72 @@ source path/venv/Scripts/activate
 py manage.py runserve
 ```
 
+## Techniquement
+
+L'authentification est gérée par JWT.
+
+Seul l’administrateur doit pouvoir ajouter/modifier/supprimer des éléments,
+les autres ne peuvent que consulter les informations
+
+Swagger n'affiche que les Get car à son lancement il n'y a pas de token
+
+## Fonctionnalités
+
+- CRUD sur les films, les genres, les acteurs, les réalisateurs, les scenarios, les clients et les emprunts
+
+## SQL INSERT DATA
+
+```sql
+INSERT INTO myApp1_acteur (nom, prenom, age) VALUES
+('Smith', 'John', 30),
+('Doe', 'Jane', 25),
+('Brown', 'Mike', 40),
+('Garcia', 'Maria', 35),
+('Lee', 'David', 28),
+('Kim', 'Sophie', 23);
+
+
+
+INSERT INTO myApp1_realisateur (nom, prenom, age, pays)
+VALUES
+  ('Spielberg', 'Steven', 75, 'USA'),
+  ('Lee', 'Ang', 67, 'Taiwan'),
+  ('Bigelow', 'Kathryn', 70, 'USA'),
+  ('Kubrick', 'Stanley', 70, 'UK'),
+  ('Hitchcock', 'Alfred', 80, 'UK'),
+  ('Tarantino', 'Quentin', 58, 'USA'),
+  ('Coen', 'Ethan', 64, 'USA'),
+  ('Coen', 'Joel', 67, 'USA');
+
+
+
+INSERT INTO myApp1_film (description, duree_minutes, genre, realisateur_id, scenario_id, titre)
+VALUES
+  ('A young farmhand becomes a knight and battles a dragon to save a princess', 120, 'Action', 1, 1, 'Dragon Slayer'),
+  ('A group of survivors must fight their way through a post-apocalyptic wasteland to reach safety', 90, 'Horror', 2, 2, 'The Road'),
+  ('A hacker seeks revenge against a corrupt government agency that wronged him', 135, 'Thriller', 3, 3, 'Hacktivist'),
+  ('A group of scientists discover a way to time-travel and must stop an apocalyptic event', 110, 'Science Fiction', 4, 4, 'The Time Travelers'),
+  ('A group of friends go on a road trip and discover a hidden conspiracy', 95, 'Mystery', 5, 5, 'The Highway'),
+  ('A man must navigate through a city filled with zombies to rescue his daughter', 100, 'Horror', 6, 6, 'Zombie City'),
+  ('A detective investigates a series of murders that all seem connected to a mysterious book', 120, 'Mystery', 7, NULL, 'The Book of Murders'),
+  ('A group of thieves attempt to pull off the biggest heist in history', 130, 'Action', 8, 7, 'The Big Score');
+
+
+
+
+INSERT INTO myApp1_scenario (description, film_id, titre)
+VALUES
+  ('A young farmhand becomes a knight and battles a dragon to save a princess', 1, 'Dragon Slayer'),
+  ('A group of survivors must fight their way through a post-apocalyptic wasteland to reach safety', 2, 'The Road'),
+  ('A hacker seeks revenge against a corrupt government agency that wronged him', 3, 'Hacktivist'),
+  ('A group of scientists discover a way to time-travel and must stop an apocalyptic event', 4, 'The Time Travelers'),
+  ('A group of friends go on a road trip and discover a hidden conspiracy', 5, 'The Highway'),
+  ('A man must navigate through a city filled with zombies to rescue his daughter', 6, 'Zombie City'),
+  ('A detective investigates a series of murders that all seem connected to a mysterious book', 7, 'The Book of Murders'),
+  ('A group of thieves attempt to pull off the biggest heist in history', 8, 'The Big Score');
+
+```
+
 ## Plugins conseillés
 
 Eslint : Linter
